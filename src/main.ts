@@ -2,14 +2,17 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
+import * as express from 'express';
+
 import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     cors: true,
   });
+  app.use('/', express.static(join(__dirname, '../public/views')));
   app.setBaseViewsDir(join(__dirname, '../public', 'views'));
-  app.setViewEngine('hbs');
+  app.setViewEngine('pug');
   app.use(
     session({
       secret: process.env.COOKIE_SECRET,

@@ -6,8 +6,14 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  @Render('index')
-  getHello(): { message: string } {
-    return { message: 'hello nestjs project' };
+  @Render('home')
+  getHello(): { title: string } {
+    return { title: 'Cafe Small House' };
+  }
+
+  @Get('/login')
+  @Render('login')
+  getLoginRender(): { title: string } {
+    return { title: 'Login' };
   }
 }
