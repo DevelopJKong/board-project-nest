@@ -2,8 +2,10 @@ const loginBtn = document.getElementById('login');
 
 loginBtn.addEventListener('click', (event) => {
   event.preventDefault();
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
+  const username = (<HTMLInputElement>document.getElementById('username'))
+    .value;
+  const password = (<HTMLInputElement>document.getElementById('password'))
+    .value;
   const data = { username, password };
   fetch('/login', {
     method: 'POST',

@@ -10,8 +10,8 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     cors: true,
   });
-  app.use('/', express.static(join(__dirname, '../public/views')));
-  app.setBaseViewsDir(join(__dirname, '../public', 'views'));
+  app.use('/', express.static(join(__dirname, '../assets')));
+  app.setBaseViewsDir(join(__dirname, '../src', '/public/views'));
   app.setViewEngine('pug');
   app.use(
     session({
